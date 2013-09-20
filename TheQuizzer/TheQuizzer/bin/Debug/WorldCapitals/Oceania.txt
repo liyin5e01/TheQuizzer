@@ -1,0 +1,14 @@
+Australia=Canberra
+Federal States of Micronesia=Palikir
+Figi=Suva
+Kiribati=Tarawa
+Marshall Islands=Majuro
+Nauru=Yaren District|yaren
+New Caledonia=Noumea
+New Zealand=Wellington
+Papua New Guinea=Port Moresby
+Samoa=Apia
+Solomon Islands=Honiara
+Tonga=Nuku'alofa|Nuku alofa
+Tuvalu=Funafuti
+Vanuatu=Port Vila

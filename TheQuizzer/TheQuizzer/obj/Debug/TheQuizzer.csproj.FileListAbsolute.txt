@@ -1,0 +1,34 @@
+E:\Greg's Programming\TheQuizzer\TheQuizzer\bin\Debug\TheQuizzer.exe
+E:\Greg's Programming\TheQuizzer\TheQuizzer\bin\Debug\TheQuizzer.pdb
+E:\Greg's Programming\TheQuizzer\TheQuizzer\obj\Debug\ResolveAssemblyReference.cache
+E:\Greg's Programming\TheQuizzer\TheQuizzer\obj\Debug\TheQuizzer.Form1.resources
+E:\Greg's Programming\TheQuizzer\TheQuizzer\obj\Debug\TheQuizzer.Properties.Resources.resources
+E:\Greg's Programming\TheQuizzer\TheQuizzer\obj\Debug\TheQuizzer.csproj.GenerateResource.Cache
+E:\Greg's Programming\TheQuizzer\TheQuizzer\obj\Debug\TheQuizzer.exe
+E:\Greg's Programming\TheQuizzer\TheQuizzer\obj\Debug\TheQuizzer.pdb
+E:\Greg's Programming\TheQuizzer\TheQuizzer\obj\Debug\TheQuizzer.Splash.resources
+E:\TheQuizzer\TheQuizzer\obj\Debug\TheQuizzer.exe
+E:\TheQuizzer\TheQuizzer\obj\Debug\TheQuizzer.pdb
+E:\TheQuizzer\TheQuizzer\bin\Debug\TheQuizzer.exe
+E:\TheQuizzer\TheQuizzer\bin\Debug\TheQuizzer.pdb
+E:\TheQuizzer\TheQuizzer\obj\Debug\ResolveAssemblyReference.cache
+E:\TheQuizzer\TheQuizzer\obj\Debug\TheQuizzer.Form1.resources
+E:\TheQuizzer\TheQuizzer\obj\Debug\TheQuizzer.Properties.Resources.resources
+E:\TheQuizzer\TheQuizzer\obj\Debug\TheQuizzer.Splash.resources
+E:\TheQuizzer\TheQuizzer\obj\Debug\TheQuizzer.csproj.GenerateResource.Cache
+E:\Greg's Programming\TheQuizzer\TheQuizzer\obj\Debug\TheQuizzer.HighScore.resources
+C:\Users\Greg\Dropbox\Greg\TheQuizzer\TheQuizzer\obj\Debug\TheQuizzer.exe
+C:\Users\Greg\Dropbox\Greg\TheQuizzer\TheQuizzer\obj\Debug\TheQuizzer.pdb
+C:\Users\Greg\Dropbox\Greg\TheQuizzer\TheQuizzer\bin\Debug\TheQuizzer.exe
+C:\Users\Greg\Dropbox\Greg\TheQuizzer\TheQuizzer\bin\Debug\TheQuizzer.pdb
+C:\Users\Greg\Dropbox\Greg\TheQuizzer\TheQuizzer\obj\Debug\TheQuizzer.csprojResolveAssemblyReference.cache
+C:\Users\Greg\Dropbox\Greg\TheQuizzer\TheQuizzer\obj\Debug\TheQuizzer.Form1.resources
+C:\Users\Greg\Dropbox\Greg\TheQuizzer\TheQuizzer\obj\Debug\TheQuizzer.HighScore.resources
+C:\Users\Greg\Dropbox\Greg\TheQuizzer\TheQuizzer\obj\Debug\TheQuizzer.Properties.Resources.resources
+C:\Users\Greg\Dropbox\Greg\TheQuizzer\TheQuizzer\obj\Debug\TheQuizzer.Splash.resources
+C:\Users\Greg\Dropbox\Greg\TheQuizzer\TheQuizzer\obj\Debug\TheQuizzer.csproj.GenerateResource.Cache
+C:\Users\Greg\Dropbox\Greg\TheQuizzer\TheQuizzer\bin\Debug\TheQuizzer.exe.config
+C:\Users\Greg\Dropbox\Greg\TheQuizzer\TheQuizzer\bin\Debug\DocumentFormat.OpenXml.dll
+C:\Users\Greg\Dropbox\Greg\TheQuizzer\TheQuizzer\bin\Debug\Ionic.Zip.dll
+C:\Users\Greg\Dropbox\Greg\TheQuizzer\TheQuizzer\bin\Debug\NPOI.dll
+C:\Users\Greg\Dropbox\Greg\TheQuizzer\TheQuizzer\bin\Debug\NPOI.xml
