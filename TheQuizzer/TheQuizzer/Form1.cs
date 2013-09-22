@@ -229,7 +229,10 @@ namespace TheQuizzer
             }
             if (String.Compare(actualAnswer, "yes", true) == 0)
             {
-                string[] yesVals = { "yeah", "yesh", "yea", "yep", "boo yeah", "hell yeah", "fuck yeah", "well duh", "well duhh" };
+                string[] yesVals = { "yeah", "yesh", "yea", "yep", "booyeah", 
+                                       "hellyeah", "fuckyeah", "wellduh", "wellduhh",
+                                       "heckyeah", "affirmative"
+                                        };
                 foreach (string validAnswer in yesVals)
                 {
                     if (String.Compare(givenAnswer, validAnswer) == 0)
@@ -240,7 +243,11 @@ namespace TheQuizzer
             }
             if (String.Compare(actualAnswer, "no", true) == 0)
             {
-                string[] noVals = { "nope", "nah", "lol no", "noo", "nooo", "noooo", "nooooo", "noooooo", "nooooooo", "noooooooo", "nooooooooo", "noooooooooo" };
+                string[] noVals = { "nope", "nah", "lolno", "noo", 
+                                      "nooo", "noooo", "nooooo", "noooooo", 
+                                      "nooooooo", "noooooooo", "nooooooooo", 
+                                      "noooooooooo", "hellno", "heckno",
+                                      "negative"};
                 foreach (string validAnswer in noVals)
                 {
                     if (String.Compare(givenAnswer, validAnswer) == 0)
@@ -310,7 +317,7 @@ namespace TheQuizzer
             fDialog.Multiselect = true;
             if (lastOpenPath == null)
             {
-                fDialog.InitialDirectory = Path.GetDirectoryName(Application.ExecutablePath);
+                fDialog.InitialDirectory = Path.GetDirectoryName(Application.ExecutablePath) + "\\Anatomy";
             }
             else
             {
