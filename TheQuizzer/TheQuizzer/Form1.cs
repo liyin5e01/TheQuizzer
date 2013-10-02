@@ -28,14 +28,16 @@ using System.Windows.Forms;
 using System.Media;
 using System.Threading;
 
-using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Wordprocessing;
+using Novacode;
+//using DocumentFormat.OpenXml;
+//using DocumentFormat.OpenXml.Packaging;
+//using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace TheQuizzer
 {
     public partial class Form1 : Form
     {
+        private static string SEP = System.IO.Path.DirectorySeparatorChar.ToString();
         private const int EDUCATIONAL_FREQUENCY = 10;
         private const int TIME_LIMIT = 60;
         private const float MAX_QUESTION_FONT_SIZE = 20;
@@ -57,19 +59,19 @@ namespace TheQuizzer
         private bool enterKeyDown;
         private string hsFilePath;
         HighScore hs;
-        SoundPlayer yep = new SoundPlayer("zsrc\\yep.wav");
-        SoundPlayer nope = new SoundPlayer("zsrc\\nope.wav");
-        SoundPlayer tick = new SoundPlayer("zsrc\\tick.wav");
-        SoundPlayer ding = new SoundPlayer("zsrc\\ding.wav");
+        SoundPlayer yep = new SoundPlayer("zsrc" + SEP + "yep.wav");
+        SoundPlayer nope = new SoundPlayer("zsrc" + SEP + "nope.wav");
+        SoundPlayer tick = new SoundPlayer("zsrc" + SEP + "tick.wav");
+        SoundPlayer ding = new SoundPlayer("zsrc" + SEP + "ding.wav");
         List<SoundPlayer> yay = new List<SoundPlayer>();
 
         public Form1()
         {
             InitializeComponent();
-            
-            for (int i = 1; File.Exists("zsrc\\yay" + i + ".wav"); i++) 
+
+            for (int i = 1; File.Exists("zsrc" + SEP + "yay" + i + ".wav"); i++) 
             {
-                SoundPlayer p = new SoundPlayer("zsrc\\yay" + i + ".wav");
+                SoundPlayer p = new SoundPlayer("zsrc" + SEP + "yay" + i + ".wav");
                 yay.Add(p);
             }
             hs = new HighScore();
@@ -142,7 +144,7 @@ namespace TheQuizzer
                         button2.Update();
                         textBox3.Update();
                         Splash gameOverScreen = new Splash();
-                        gameOverScreen.BackgroundImage = Image.FromFile("zsrc\\gameover.jpg");
+                        gameOverScreen.BackgroundImage = System.Drawing.Image.FromFile("zsrc" + SEP + "gameover.jpg");
                         gameOverScreen.Width = gameOverScreen.BackgroundImage.Width;
                         gameOverScreen.Height = gameOverScreen.BackgroundImage.Height;
                         gameOverScreen.timer1.Interval = 1500;
@@ -232,7 +234,7 @@ namespace TheQuizzer
                 string[] yesVals = { "yeah", "yesh", "yea", "yep", "booyeah", 
                                        "hellyeah", "fuckyeah", "wellduh", "wellduhh",
                                        "heckyeah", "affirmative"
-                                        };
+                                        }; // if adding more values, remember to not have spaces.
                 foreach (string validAnswer in yesVals)
                 {
                     if (String.Compare(givenAnswer, validAnswer) == 0)
@@ -317,7 +319,8 @@ namespace TheQuizzer
             fDialog.Multiselect = true;
             if (lastOpenPath == null)
             {
-                fDialog.InitialDirectory = Path.GetDirectoryName(Application.ExecutablePath) + "\\Anatomy";
+                //MessageBox.Show(Path.GetDirectoryName(Application.ExecutablePath).Replace("\\", "/") + "/Anatomy");
+                fDialog.InitialDirectory = Path.GetDirectoryName(Application.ExecutablePath) + SEP + "Anatomy";
             }
             else
             {
@@ -325,9 +328,13 @@ namespace TheQuizzer
             }
             if (fDialog.ShowDialog() == DialogResult.OK)
             {
+                textBox1.Text = "Loading...";
+                textBox1.Font = changeFontSize(textBox1.Font, MIN_QUESTION_FONT_SIZE);
+                textBox1.Update();
+                textBox1.Font = changeFontSize(textBox1.Font, MAX_QUESTION_FONT_SIZE);
                 hsFilePath = fDialog.FileName.Substring(0, fDialog.FileName.LastIndexOf('.')) + ".HighScore";
-                
-                lastOpenPath = fDialog.FileName.Substring(0, fDialog.FileName.LastIndexOf('\\'));
+
+                lastOpenPath = fDialog.FileName.Substring(0, fDialog.FileName.LastIndexOf(SEP));
                 string[] filesToOpen = fDialog.FileNames;
                 foreach (string s in filesToOpen)
                 {
@@ -362,7 +369,7 @@ namespace TheQuizzer
                     AddEntries(firstStuff, secondStuff);
 
                     string justFileName = fileName.Substring(0, fileName.LastIndexOf('.'));
-                    justFileName = justFileName.Substring(justFileName.LastIndexOf('\\') + 1);
+                    justFileName = justFileName.Substring(justFileName.LastIndexOf(SEP) + 1);
                     textBox1.Text = justFileName + " - Added";
                 }
             }
@@ -370,8 +377,10 @@ namespace TheQuizzer
 
         private void AddEntriesFromDocx(string fileName)
         {
+            /*
             // The following method was adapted from some copypasta from http://stackoverflow.com/questions/11240933/extract-table-from-docx
             StringBuilder result = new StringBuilder();
+			MessageBox.Show(fileName);
             WordprocessingDocument wordProcessingDoc = null;
             try
             {
@@ -421,8 +430,43 @@ namespace TheQuizzer
             }
 
             wordProcessingDoc.Close();
+            */
+            using (DocX document = DocX.Load(fileName))
+            {
+                Table t = document.Tables[0];
+                foreach (Row r in t.Rows)
+                {
+                    string firstStuff = "", secondStuff = "";
+                    for (int i = 0; i < 2; i++)
+                    {
+                        string text = "";
+                        foreach (Paragraph p in r.Cells[i].Paragraphs)
+                        {
+                            if (p == null) break;
+                            text += p.Text;
+                        }
+                        text = text.Trim();
+                        if (i == 0) firstStuff = text;
+                        else secondStuff = text;
+                    }
+                    if (firstStuff.Length != 0 && secondStuff.Length != 0)
+                    {
+                        // treat anything after a # as a comment
+                        if (!secondStuff.StartsWith("."))
+                        {
+                            int index = secondStuff.IndexOf("//");
+                            if (index >= 0)
+                            {
+                                secondStuff = secondStuff.Substring(0, index);
+                            }
+                            AddEntries(firstStuff, secondStuff);
+                        }
+                    }
+                }
+            }
             string justFileName = fileName.Substring(0, fileName.LastIndexOf('.'));
-            justFileName = justFileName.Substring(justFileName.LastIndexOf('\\') + 1);
+            justFileName = justFileName.Substring(justFileName.LastIndexOf(SEP) + 1);
+            
             textBox1.Text = justFileName + " - Added";
         }
 
@@ -660,7 +704,7 @@ namespace TheQuizzer
                         Splash award = new Splash();
                         try
                         {
-                            Image img = Image.FromFile("zsrc\\yay" + (i+1) + ".jpg");
+                            System.Drawing.Image img = System.Drawing.Image.FromFile("zsrc" + SEP + "yay" + (i + 1) + ".jpg");
                             award.BackgroundImage = img;
                             award.Height = img.Height;
                             award.Width = img.Width;
@@ -678,7 +722,7 @@ namespace TheQuizzer
                     try
                     {
                         Splash emptySplash = new Splash();
-                        Image img = Image.FromFile("zsrc\\gameover.jpg");
+                        System.Drawing.Image img = System.Drawing.Image.FromFile("zsrc" + SEP + "gameover.jpg");
                         emptySplash.BackgroundImage = img;
                         emptySplash.Width = img.Width;
                         emptySplash.Height = img.Height;
