@@ -44,7 +44,6 @@ C:\Users\Greg\Dropbox\repos\TheQuizzer\TheQuizzer\TheQuizzer\obj\Debug\TheQuizze
 C:\Users\Greg\Dropbox\repos\TheQuizzer\TheQuizzer\TheQuizzer\bin\Debug\TheQuizzer.exe
 C:\Users\Greg\Dropbox\repos\TheQuizzer\TheQuizzer\TheQuizzer\bin\Debug\TheQuizzer.pdb
 C:\Users\Greg\Dropbox\repos\TheQuizzer\TheQuizzer\TheQuizzer\bin\Debug\DocumentFormat.OpenXml.dll
-C:\Users\Greg\Dropbox\repos\TheQuizzer\TheQuizzer\TheQuizzer\bin\Debug\DocX.dll
 C:\Users\Greg\Dropbox\repos\TheQuizzer\TheQuizzer\TheQuizzer\bin\Debug\Ionic.Zip.dll
 C:\Users\Greg\Dropbox\repos\TheQuizzer\TheQuizzer\TheQuizzer\bin\Debug\NPOI.dll
 C:\Users\Greg\Dropbox\repos\TheQuizzer\TheQuizzer\TheQuizzer\bin\Debug\NPOI.xml

@@ -46,6 +46,7 @@ namespace TheQuizzer
         private int numCorrect = 0, numIncorrect = 0;
         private int educationalIndex1 = -1, educationalIndex2 = -1;
         private Random random = new Random();
+        private List<int> unaskedIndices = new List<int>();
         private List<Entry> entryList = new List<Entry>();
         private List<int> incorrectEntryIndexes = new List<int>();
         private int currentEntryIndex;
@@ -187,7 +188,16 @@ namespace TheQuizzer
                 else
                 {
                     textBox1.ForeColor = System.Drawing.Color.Black;
-                    currentEntryIndex = random.Next(entryList.Count);
+                    int entryIndex = unaskedIndices[random.Next(unaskedIndices.Count)];
+                    currentEntryIndex = entryIndex;
+                    unaskedIndices.Remove(entryIndex);
+                    if (unaskedIndices.Count == 0)
+                    {
+                        for (int i = 0; i < entryList.Count; i++)
+                        {
+                            unaskedIndices.Add(i);
+                        }
+                    }
                 }
             }
             educationalIndex1 = educationalIndex2;
@@ -481,6 +491,7 @@ namespace TheQuizzer
             string[] secondElements = secondStuff.Split('|');
 
             entryList.Add(new Entry(firstElements, secondElements));
+            unaskedIndices.Add(entryList.Count - 1);
             
         }
 
