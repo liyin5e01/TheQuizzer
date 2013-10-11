@@ -241,10 +241,11 @@ namespace TheQuizzer
             }
             if (String.Compare(actualAnswer, "yes", true) == 0)
             {
+		// if adding more values, remember to not have spaces.
                 string[] yesVals = { "yeah", "yesh", "yea", "yep", "booyeah", 
                                        "hellyeah", "fuckyeah", "wellduh", "wellduhh",
                                        "heckyeah", "affirmative"
-                                        }; // if adding more values, remember to not have spaces.
+                                        }; // apologies for the language. Gotta satisfy the end users.
                 foreach (string validAnswer in yesVals)
                 {
                     if (String.Compare(givenAnswer, validAnswer) == 0)
@@ -587,6 +588,7 @@ namespace TheQuizzer
             numIncorrect = 0;
             points = 0;
             entryList.Clear();
+            unaskedIndices.Clear();
             incorrectEntryIndexes.Clear();
             textBox1.Text = "";
             textBox2.Text = "";
@@ -859,6 +861,11 @@ namespace TheQuizzer
             {
                 MessageBox.Show("High scores are only kept on single quizzes");
             }
+        }
+
+        private void forgetButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

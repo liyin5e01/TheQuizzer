@@ -48,6 +48,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.button4 = new System.Windows.Forms.Button();
+            this.forgetButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -224,12 +225,23 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
+            // forgetButton
+            // 
+            this.forgetButton.Location = new System.Drawing.Point(486, 315);
+            this.forgetButton.Name = "forgetButton";
+            this.forgetButton.Size = new System.Drawing.Size(116, 23);
+            this.forgetButton.TabIndex = 11;
+            this.forgetButton.Text = "Forget this question";
+            this.forgetButton.UseVisualStyleBackColor = true;
+            this.forgetButton.Click += new System.EventHandler(this.forgetButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(744, 412);
+            this.Controls.Add(this.forgetButton);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.checkBox3);
@@ -277,6 +289,7 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.ToolStripMenuItem viewHighScoresToolStripMenuItem;
+        private System.Windows.Forms.Button forgetButton;
     }
 }
 
