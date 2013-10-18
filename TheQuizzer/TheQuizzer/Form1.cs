@@ -615,6 +615,7 @@ namespace TheQuizzer
             button1.Font = new System.Drawing.Font(button1.Font, System.Drawing.FontStyle.Bold);
             button1.Text = "Start";
             button2.Text = points.ToString();
+            openDatabase();
         }
 
         private void textBox2_Click(object sender, EventArgs e)
