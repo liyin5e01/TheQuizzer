@@ -38,3 +38,6 @@ C:\Users\Greg\Dropbox\repos\TheQuizzer\TheQuizzer\TheQuizzer\obj\Release\TheQuiz
 C:\Users\Greg\Dropbox\repos\TheQuizzer\TheQuizzer\TheQuizzer\obj\Release\TheQuizzer.Properties.Resources.resources
 C:\Users\Greg\Dropbox\repos\TheQuizzer\TheQuizzer\TheQuizzer\obj\Release\TheQuizzer.Splash.resources
 C:\Users\Greg\Dropbox\repos\TheQuizzer\TheQuizzer\TheQuizzer\obj\Release\TheQuizzer.csproj.GenerateResource.Cache
+C:\cygwin64\home\Li\TheQuizzer\TheQuizzer\TheQuizzer\bin\Release\TheQuizzer.exe.config
+C:\cygwin64\home\Li\TheQuizzer\TheQuizzer\TheQuizzer\obj\Release\TheQuizzer.exe
+C:\cygwin64\home\Li\TheQuizzer\TheQuizzer\TheQuizzer\obj\Release\TheQuizzer.pdb

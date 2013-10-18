@@ -27,11 +27,14 @@ namespace TheQuizzer
     {
         private string[] elementOne;
         private string[] elementTwo;
+	    private bool questionAsked;
 
         public Entry(string[] elementOne, string[] elementTwo)
         {
             this.elementOne = elementOne;
             this.elementTwo = elementTwo;
+		//when you first instantiate an entry, you haven't asked a question yet.
+		questionAsked = false;
             
         }
 
@@ -43,5 +46,11 @@ namespace TheQuizzer
         {
             return elementTwo;
         }
+	    public void setQuestionAsked (bool b){
+		    this.questionAsked = b;
+	    }
+	    public bool isQuestionAsked (){
+		    return questionAsked;
+	    }
     }
 }

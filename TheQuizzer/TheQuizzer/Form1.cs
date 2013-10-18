@@ -46,15 +46,19 @@ namespace TheQuizzer
         private int numCorrect = 0, numIncorrect = 0;
         private int educationalIndex1 = -1, educationalIndex2 = -1;
         private Random random = new Random();
-        private List<int> unaskedIndices = new List<int>();
+        //private List<int> unaskedIndices = new List<int>();
         private List<Entry> entryList = new List<Entry>();
         private List<int> incorrectEntryIndexes = new List<int>();
         private int currentEntryIndex;
+		//might need this for later, to remember the entry that the user wants to forget. Set to -1 as default to indicate that no questions have been asked yet.
+		private int prevEntryIndex = -1;
         private string lastOpenPath;
         private bool educationalEnhancements = false;
         private bool useQuestionsAsAnswers = false;
         private bool playWithPoints = false;
         private bool currentQuestionElement1;
+		//need this to prevent the user from spamming the forget button
+		private bool forgetButtonPressed = false;
         private int points = 0;
         private int countdown = TIME_LIMIT;
         private bool enterKeyDown;
@@ -173,6 +177,9 @@ namespace TheQuizzer
 
         private void generateNextEntry()
         {
+            //remember which question to forget
+            prevEntryIndex = currentEntryIndex;
+
             //choose an index
             if (educationalEnhancements && educationalIndex1 != -1)
             {
@@ -188,16 +195,25 @@ namespace TheQuizzer
                 else
                 {
                     textBox1.ForeColor = System.Drawing.Color.Black;
-                    int entryIndex = unaskedIndices[random.Next(unaskedIndices.Count)];
-                    currentEntryIndex = entryIndex;
-                    unaskedIndices.Remove(entryIndex);
-                    if (unaskedIndices.Count == 0)
-                    {
-                        for (int i = 0; i < entryList.Count; i++)
-                        {
-                            unaskedIndices.Add(i);
+
+                    //we're going to generate a list of questions that haven't been asked, and then pick a random one from there to ask
+                    List <Entry> unasked = new List <Entry>;
+                    foreach (Entry e in entryList){
+                        if (!e.isQuestionAsked()){
+                            unasked.Add(e);
                         }
                     }
+                    
+                    //if all questions have been asked, reset all quetions to unasked
+                    if (unasked.Count == 0){
+                        foreach (Entry f in entryList){
+                            f.setQuestionAsked(false);
+                        }
+                    }
+
+                    //actually generate the next question, and then tell the computer that this question has been asked.
+                    currentEntryIndex = random.Next(unasked.Count);
+                    entryList[currentEntryIndex].setQuestionAsked (false);
                 }
             }
             educationalIndex1 = educationalIndex2;
@@ -216,6 +232,9 @@ namespace TheQuizzer
             {
                 beginFancyTextInBox1();
             }
+
+            //now they can forget questions
+            forgetButtonPressed = false;
         }
 
         private bool isCorrectAnswer(string givenAnswer, string[] answers)
@@ -492,7 +511,7 @@ namespace TheQuizzer
             string[] secondElements = secondStuff.Split('|');
 
             entryList.Add(new Entry(firstElements, secondElements));
-            unaskedIndices.Add(entryList.Count - 1);
+            //unaskedIndices.Add(entryList.Count - 1);
             
         }
 
@@ -588,7 +607,7 @@ namespace TheQuizzer
             numIncorrect = 0;
             points = 0;
             entryList.Clear();
-            unaskedIndices.Clear();
+            //unaskedIndices.Clear();
             incorrectEntryIndexes.Clear();
             textBox1.Text = "";
             textBox2.Text = "";
@@ -865,7 +884,31 @@ namespace TheQuizzer
 
         private void forgetButton_Click(object sender, EventArgs e)
         {
-
+            //if the forgetButton has been pressed already, don't let them spam the button
+            if (forgetButtonPressed)
+            {
+                MessageBox.Show("Don't spam the forget button!");
+            }
+            //if the user just started the game, don't let them forget anything.
+            else if (prevEntryIndex == -1)
+            {
+                MessageBox.Show("There are no questions to forget just yet!");
+            }
+            //if all the questions have been forgotten, refresh the list of questions
+            else if (entryList.Count() == 0) { 
+                //how do you refresh the database? I don't understand the refreshDataBaseToolStrip... method. And don't forget to set prevEntryIndex into -1.
+            }
+            //the acutal meat and potatoes
+            else
+            {
+                entryList.RemoveAt(prevEntryIndex);
+                
+                //If the list size just went down, sometimes you have to decrement the current entry index
+                if (currentEntryIndex > prevEntryIndex){
+                    currentEntryIndex--;
+                }
+                forgetButtonPressed = true;
+            }
         }
     }
 }
