@@ -33,8 +33,8 @@ namespace TheQuizzer
         {
             this.elementOne = elementOne;
             this.elementTwo = elementTwo;
-		//when you first instantiate an entry, you haven't asked a question yet.
-		questionAsked = false;
+		    //when you first instantiate an entry, you haven't asked a question yet.
+		    questionAsked = false;
             
         }
 

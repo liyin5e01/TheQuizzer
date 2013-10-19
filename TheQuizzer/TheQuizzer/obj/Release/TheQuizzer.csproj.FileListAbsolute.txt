@@ -41,3 +41,16 @@ C:\Users\Greg\Dropbox\repos\TheQuizzer\TheQuizzer\TheQuizzer\obj\Release\TheQuiz
 C:\cygwin64\home\Li\TheQuizzer\TheQuizzer\TheQuizzer\bin\Release\TheQuizzer.exe.config
 C:\cygwin64\home\Li\TheQuizzer\TheQuizzer\TheQuizzer\obj\Release\TheQuizzer.exe
 C:\cygwin64\home\Li\TheQuizzer\TheQuizzer\TheQuizzer\obj\Release\TheQuizzer.pdb
+C:\cygwin64\home\Li\TheQuizzer\TheQuizzer\TheQuizzer\obj\Release\TheQuizzer.csprojResolveAssemblyReference.cache
+C:\cygwin64\home\Li\TheQuizzer\TheQuizzer\TheQuizzer\obj\Release\TheQuizzer.Form1.resources
+C:\cygwin64\home\Li\TheQuizzer\TheQuizzer\TheQuizzer\obj\Release\TheQuizzer.HighScore.resources
+C:\cygwin64\home\Li\TheQuizzer\TheQuizzer\TheQuizzer\obj\Release\TheQuizzer.Properties.Resources.resources
+C:\cygwin64\home\Li\TheQuizzer\TheQuizzer\TheQuizzer\obj\Release\TheQuizzer.Splash.resources
+C:\cygwin64\home\Li\TheQuizzer\TheQuizzer\TheQuizzer\obj\Release\TheQuizzer.csproj.GenerateResource.Cache
+C:\cygwin64\home\Li\TheQuizzer\TheQuizzer\TheQuizzer\bin\Release\TheQuizzer.exe
+C:\cygwin64\home\Li\TheQuizzer\TheQuizzer\TheQuizzer\bin\Release\TheQuizzer.pdb
+C:\cygwin64\home\Li\TheQuizzer\TheQuizzer\TheQuizzer\bin\Release\DocumentFormat.OpenXml.dll
+C:\cygwin64\home\Li\TheQuizzer\TheQuizzer\TheQuizzer\bin\Release\Ionic.Zip.dll
+C:\cygwin64\home\Li\TheQuizzer\TheQuizzer\TheQuizzer\bin\Release\NPOI.dll
+C:\cygwin64\home\Li\TheQuizzer\TheQuizzer\TheQuizzer\bin\Release\NPOI.xml
+C:\cygwin64\home\Li\TheQuizzer\TheQuizzer\TheQuizzer\bin\Release\DocX.dll

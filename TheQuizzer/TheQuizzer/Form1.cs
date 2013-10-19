@@ -93,6 +93,7 @@ namespace TheQuizzer
 
         private void submitAnswer()
         {
+
             textBox2.SelectAll();
             // lame-o Easter egg
             if (isCorrectAnswer(textBox2.Text, "Greg is cool"))
@@ -197,7 +198,7 @@ namespace TheQuizzer
                     textBox1.ForeColor = System.Drawing.Color.Black;
 
                     //we're going to generate a list of questions that haven't been asked, and then pick a random one from there to ask
-                    List <Entry> unasked = new List <Entry>;
+                    List <Entry> unasked = new List <Entry> ();
                     foreach (Entry e in entryList){
                         if (!e.isQuestionAsked()){
                             unasked.Add(e);
@@ -214,8 +215,15 @@ namespace TheQuizzer
                     //actually generate the next question, and then tell the computer that this question has been asked.
                     currentEntryIndex = random.Next(unasked.Count);
                     entryList[currentEntryIndex].setQuestionAsked (false);
+					
+                    //debugging purposes
+                    /*
+					String temp = unasked.Count + ", " + currentEntryIndex;
+					MessageBox.Show(temp);
+                    */
                 }
             }
+                     
             educationalIndex1 = educationalIndex2;
             //choose to use either element1 or element2
             if (useQuestionsAsAnswers && random.Next(2) == 0)
@@ -235,11 +243,23 @@ namespace TheQuizzer
 
             //now they can forget questions
             forgetButtonPressed = false;
+
+            //This current question has now been asked
+            entryList[currentEntryIndex].setQuestionAsked(true);
+			
+			//for debugging
+			/*
+			String temp = "";
+			foreach (Entry g in entryList){
+				temp = temp +"\nEntry: " + g.getElementTwo() + ", " + g.isQuestionAsked(); 
+			}
+			MessageBox.Show (temp);
+			*/
         }
 
         private bool isCorrectAnswer(string givenAnswer, string[] answers)
-        {
-            foreach (string answer in answers)
+        {			
+			foreach (string answer in answers)
             {
                 if (isCorrectAnswer(givenAnswer, answer)) // compare ignoring case
                 {
@@ -382,6 +402,10 @@ namespace TheQuizzer
                     hsFilePath = null;
                 }
             }
+
+            //The addEntries() method invokes the constructor for Entry, which automatically sets the questionAsked to false.
+            prevEntryIndex = -1;
+            forgetButtonPressed = false;
         }
 
         private void AddEntriesFromTxt(string fileName)
@@ -600,9 +624,10 @@ namespace TheQuizzer
             splash.Show();
         }
 
-        private void refreshDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
+        //not sure how you want to implement this Greg. This is a helper method to refresh the database, because I need to call it in the forget button. 
+        //Moreover, all this does is open a new set of questions...so...maybe we need to rename it?
+        private void refreshDatabase() 
         {
-            tick.Play();
             numCorrect = 0;
             numIncorrect = 0;
             points = 0;
@@ -616,6 +641,12 @@ namespace TheQuizzer
             button1.Text = "Start";
             button2.Text = points.ToString();
             openDatabase();
+        }
+
+        private void refreshDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tick.Play();
+            refreshDatabase();
         }
 
         private void textBox2_Click(object sender, EventArgs e)
@@ -833,6 +864,7 @@ namespace TheQuizzer
             }
             else
             {
+             
                 submitAnswer();
             }
         }
@@ -896,16 +928,23 @@ namespace TheQuizzer
                 MessageBox.Show("There are no questions to forget just yet!");
             }
             //if all the questions have been forgotten, refresh the list of questions
-            else if (entryList.Count() == 0) { 
-                //how do you refresh the database? I don't understand the refreshDataBaseToolStrip... method. And don't forget to set prevEntryIndex into -1.
+            else if (entryList.Count() == 0) 
+            { 
+				//appears that List doesn't allow you to totally empty it. So we might have to implement this section when entryList.Count() == 1.
+                MessageBox.Show("Well, seems like you went through all the questions. Let's load a new set!");
+                refreshDatabase();
             }
             //the acutal meat and potatoes
             else
             {
+				//After 1 testing, this hasn't crashed yet so far, so I think it's implemented correctly.
+				//However, need to implement the unasked stuff correctly
                 entryList.RemoveAt(prevEntryIndex);
+				textBox3.Text = "Question Forgotten.";
                 
                 //If the list size just went down, sometimes you have to decrement the current entry index
-                if (currentEntryIndex > prevEntryIndex){
+                if (currentEntryIndex > prevEntryIndex)
+                {
                     currentEntryIndex--;
                 }
                 forgetButtonPressed = true;
