@@ -198,29 +198,27 @@ namespace TheQuizzer
                     textBox1.ForeColor = System.Drawing.Color.Black;
 
                     //we're going to generate a list of questions that haven't been asked, and then pick a random one from there to ask
-                    List <Entry> unasked = new List <Entry> ();
-                    foreach (Entry e in entryList){
-                        if (!e.isQuestionAsked()){
-                            unasked.Add(e);
-                        }
-                    }
+					List <Entry> unasked = findUnaskedIndices();
                     
-                    //if all questions have been asked, reset all quetions to unasked
+                    //if all questions have been asked, reset all quetions to unasked, and generate all the unasked indices again
                     if (unasked.Count == 0){
                         foreach (Entry f in entryList){
                             f.setQuestionAsked(false);
                         }
+						unasked = findUnaskedIndices();
                     }
 
-                    //actually generate the next question, and then tell the computer that this question has been asked.
-                    currentEntryIndex = random.Next(unasked.Count);
-                    entryList[currentEntryIndex].setQuestionAsked (false);
+                    //generate a number based on the unasked indices
+					//match the number to an entry
+					//get the index of that entry in the current entrylist
+					currentEntryIndex = entryList.IndexOf(unasked[random.Next(unasked.Count)]);
 					
                     //debugging purposes
                     /*
-					String temp = unasked.Count + ", " + currentEntryIndex;
+					String temp = unasked.Count + ", " + currentEntryIndex + ", " + entryList[currentEntryIndex].getElementOne()[0];
 					MessageBox.Show(temp);
-                    */
+					*/
+                    
                 }
             }
                      
@@ -249,13 +247,26 @@ namespace TheQuizzer
 			
 			//for debugging
 			/*
-			String temp = "";
+			String t = "";
 			foreach (Entry g in entryList){
-				temp = temp +"\nEntry: " + g.getElementTwo() + ", " + g.isQuestionAsked(); 
+				t = t +"\nEntry: " + g.getElementOne()[0] + ", " + g.isQuestionAsked(); 
 			}
-			MessageBox.Show (temp);
+			MessageBox.Show (t);
 			*/
+			
         }
+		
+		//a helper method for generating a list of unasked indices
+		private List<Entry> findUnaskedIndices (){
+			List <Entry> l = new List <Entry> ();
+                    foreach (Entry e in entryList){
+                        if (e.isQuestionAsked()==false){
+                            l.Add(e);
+							//str = str + ", " + e.getElementOne()[0];
+                        }
+                    }
+			return l;
+		}
 
         private bool isCorrectAnswer(string givenAnswer, string[] answers)
         {			
